@@ -1,0 +1,86 @@
+<!-- <button routerLink="/createpost" routerLinkActive="active" ariaCurrentWhenActive="page">createpost</button> -->
+<router-outlet></router-outlet>
+<div *ngIf="message;">
+    <h1>{{ message.notification.title }}</h1>
+    <h2>{{ message.notification.body }}</h2>
+  </div>
+  <div *ngIf="!message;">
+    No Message Arrived
+  </div>
+<div class="example-card">
+    <div class="contant-tag">
+        <p class="tech">Tech</p>
+        <p class="techX">X</p>
+    </div>
+    <div class="btn-for-create-task">
+        <button mat-stroked-button class="btn-create-post" [routerLink]="['/createpost']">What's on your mind?</button>
+    </div>
+    <mat-card class="post-data" *ngFor="let post of allPost; index as i">
+        <mat-card-header>
+            <div mat-card-avatar >
+                <img  class="example-header-image" src="{{ post.profilePic }}" referrerpolicy="noreferrer">
+            </div>
+            <mat-card-title class="Username">{{ post.name | titlecase}}</mat-card-title>
+            <!-- <mat-card-subtitle>{{ post.time }}</mat-card-subtitle> -->
+            <div *ngIf="userdata.name == post.name" class="mat-edit-delete-user">
+            <button mat-icon-button [matMenuTriggerFor]="menu" class="mat-edit-delete-user" aria-label="Example icon-button with a menu" >
+                <mat-icon>more_horiz</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item [routerLink]="['/createpost',post.id]">
+                  <h4>Edit</h4>
+                </button>
+                <button mat-menu-item>
+                <h4 (click)="delUser(post.id)">Delete</h4>
+                </button>
+              </mat-menu>
+            </div>
+        </mat-card-header>
+        <mat-card-content  class="postContent">
+            <p>
+                {{ removeTags(post.postText) }}
+            </p>
+            <h4 class="tags">
+                {{ post.tags }}
+            </h4>
+        </mat-card-content>
+        <div  class="image-post" >
+            <img *ngFor="let imgpost of post.imageData; index as i" class="image" src="{{ imgpost }}"
+                alt="Photo of a Shiba Inu">
+        </div>
+        <mat-card-actions class="btn-like-smile-heart">
+            <button mat-icon-button (click)="effect(post.id,1)">
+                <!-- [style.color]="post.heart.indexOf(userdata.id) != -1 ? 'blue' : 'green'"  -->
+                <!-- <mat-icon >{{ post.heart.indexOf(userdata.id) != -1 ? 'favorite_border' : 'favorite' }}</mat-icon> -->
+                <!-- <p>{{ this.userdata+1 }}</p> -->
+             <mat-icon [style.color]=" (post.reaction) ? post.reaction.indexOf(this.userdata.uid+1) != -1 ? 'blue' : '' : '' " >favorite</mat-icon>
+            </button> 
+            <!-- <button mat-button (click)="heart(post.id, )">
+                <mat-icon   fontIcon="favorite" [style.color]="post.heart.indexOf(userdata.id) != -1 ? 'blue' : 'black'"></mat-icon>
+            </button> -->
+            <!-- <button mat-button (click)="heart(post.id, i)">
+                <mat-icon   fontIcon="favorite" [style.color]="toggle[i] ? 'blue' : 'black'"></mat-icon>
+            </button> -->
+            <!-- [ngClass]="{'green' : toggle, 'red': !toggle}" -->
+            
+            <button mat-button (click)="effect(post.id,2)">
+                <mat-icon [style.color]=" (post.reaction) ? post.reaction.indexOf(this.userdata.uid+2) != -1 ? 'blue' : '' : '' " >sentiment_very_satisfied</mat-icon>
+            </button> 
+
+            <button mat-button  (click)="effect(post.id,3)">
+                <mat-icon [style.color]="(post.reaction) ? post.reaction.indexOf(this.userdata.uid+3) != -1 ? 'blue' : '' : '' ">thumb_up</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+    <div class="footer-up">
+
+    </div>
+    <div class="footer">
+        <div>
+            <mat-icon class="icon-home">home</mat-icon>
+        </div>
+        <div>
+            <a routerLink="/profile"><mat-icon class="icon-profile">account_circle</mat-icon></a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div>
+    <form [formGroup]="userForm" >
+        <mat-card class="header-card">
+            <div class="postheader">
+                <mat-card-title class="createpost" *ngIf="showeditdata">Create Post</mat-card-title>
+                <mat-card-title class="createpost" *ngIf="!showeditdata">Edit Post</mat-card-title>
+                <mat-icon fontIcon="close" routerLink="/landingpage"  (click)="Draft()" *ngIf="showeditdata"></mat-icon>
+                <mat-icon fontIcon="close" routerLink="/landingpage"  *ngIf="!showeditdata"></mat-icon>
+            </div>
+            
+        </mat-card>
+        <mat-card>
+            <mat-card-content>
+                <textarea class="example-full-width" placeholder="What's on your mind?"
+                    formControlName="postText" ></textarea>
+            </mat-card-content>
+            <div *ngIf="showcamera" class="webcamera">
+                <webcam [height]="280" [width]="300" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+                    class="webcame"></webcam>
+            </div>
+            <div class="showimagediv" >
+                <div *ngFor="let captureImage of captureImages; let i = index" >
+                    <img src="{{ captureImage }}"  height="100px" >
+                    <!-- <img src="formcontrolName=''" alt=""> -->
+                    <button class="btn-delete" (click)="deleteimg(captureImages)">X</button>
+                </div>
+
+                <!-- <div *ngFor="let sk of captureImages" >
+                    <img [src]="sk" height="100px">
+                </div> -->
+            </div>
+            <mat-card-actions class="btn-mat">
+                <label>
+                    <mat-icon>image</mat-icon>
+                    Photo/Video
+                    <input type="file" class="uploadfileinput" accept="video/*,image/*" 
+                    (change)="selectFile($event)">
+                </label>
+                <label (click)="triggerSnapshot();">
+                    <mat-icon>camera_enhance</mat-icon>
+                    Camera
+                </label>
+            </mat-card-actions>
+            <div class="contentbutton" *ngIf="showeditdata">
+                <button mat-button class="btn-post" (click)="onSubmit()" >Post</button>
+            </div>
+            <div class="contentbutton"  *ngIf="!showeditdata">
+                <button mat-button class="btn-post" (click)="update()" routerLink="/landingpage">Update</button>
+            </div>
+        </mat-card>
+       
+    </form>
+</div>

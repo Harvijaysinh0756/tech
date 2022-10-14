@@ -1,0 +1,46 @@
+<div>
+    <div class="main-div">
+        <div class="profileheader">
+            <div class="top-title">
+                <mat-icon fontIcon="keyboard_arrow_left" class="Profile-arrow" routerLink="/landingpage"></mat-icon>
+                <mat-card-title class="Profile-style">Profile</mat-card-title>
+            </div>
+            <div class="top-power">
+                <mat-icon fontIcon="power_settings_new" (click)="logout()" ></mat-icon>
+            </div>
+        </div>
+        <div class="profile-pic-div"> 
+            <img class="profil-pic" [src]="userdetails?.profilepic">
+            <!-- https://material.angular.io/assets/img/examples/shiba2.jpg -->
+            <button mat-mini-fab color="white" class="btn-edit-profile-pic" aria-label="Example icon button with a plus one icon">
+                <label>
+                    <mat-icon>edit</mat-icon>
+                    <input type="file" class="uploadfileinput" accept="image/*" (change)="selectFile($event)">
+                </label>
+            </button>
+            <h2 class="userName">{{ userdetails.name }}</h2>
+        
+        </div>
+        <div>
+            <div class="Notification">
+                <div class="top-title">
+                    <mat-icon fontIcon="notifications" class="icon-noti" ></mat-icon>
+                    <mat-card-title class="Notification-style">Notiofication</mat-card-title>
+                </div>
+                <div class="top-power">
+                    <section class="example-section">
+                        <mat-slide-toggle
+                            class="example-margin"
+                            [color]="color"
+                            [checked]="checked"
+                            [disabled]="disabled">
+                        </mat-slide-toggle>
+                      </section>    
+                </div>
+            </div>
+        </div>
+        <div class="update-profile">
+            <button mat-button class="btn-update-profile" (click)="update()">Update Profile</button>
+        </div>
+    </div>
+</div>

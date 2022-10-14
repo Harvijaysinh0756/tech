@@ -1,0 +1,74 @@
+/* Card css for page */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.signIn-Page {
+    min-height: 100vh;
+    display: block;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: brown; */
+    overflow: hidden;
+}
+
+.contanttag {
+    /* border: 2px solid darkblue; */
+    padding: 0;
+    /* background-color: black; */
+    margin-top: 180px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tech {
+
+    font-size: 120px;
+    font-weight: 600;
+    font-family: sans-serif;
+    color: grey;
+    margin-left: 15%;
+    margin-top: 100px;
+    margin-bottom: 0;
+}
+
+.techX {
+    font-size: 120px;
+    font-weight: 550;
+    font-family: sans-serif;
+    color: #0a6ff3;
+    margin-left: 69.5%;
+    margin-top: 70px;
+}
+.contentbutton
+{
+    /* border: 2px solid black; */
+    /* background-color: black; */
+    margin-top: 50px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.btn-fb
+{
+    margin: 5px;
+    background-color:#0a6ff3;
+    color: white;
+}
+.btn-g
+{
+    margin: 5px;
+    border-radius: 5px;
+    background-color:#0a6ff3;
+}
+.icon-f
+{
+    margin-right: 10px;
+}
+.icon-g
+{
+    margin-right: 5px;
+    margin-bottom: 8px;
+}
